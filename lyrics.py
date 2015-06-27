@@ -21,6 +21,17 @@ class Lyrics:
                 block = match.group(1)
                 print "Found block:", block
 
+                # If a block witrh the same name already exists, rename this block to "name_number"
+                # eg. If "chorus" is already defined and it is found again, then the new block would become "chorus_0", then the next would be "chorus_1" and so on
+                i = 0
+                original = block
+                while(block in self.blocks.keys()):
+                    block = original + "_" + str(i)
+                    i += 1
+
+                if(i > 0):
+                    print "Block named changed as a block with the same name already exists:", block
+
                 self.blocks[block] = []
                 currentBlock = block
 

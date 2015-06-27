@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+from lyrics import Lyrics
 
 class LyricPage:
     def __init__(self, data):
@@ -10,4 +11,4 @@ class LyricPage:
         self.author = author.lower().replace("lyrics", "").strip()
         self.song = song.strip()
 
-        self.lyrics = parsed.find("div", {"class":"", "id":""}) # The div containing the actual lyrics is the only div with no class or id
+        self.lyrics = Lyrics(parsed.find("div", {"class":"", "id":""}).text) # The div containing the actual lyrics is the only div with no class or id
